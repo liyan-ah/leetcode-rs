@@ -1,6 +1,7 @@
 mod greedy;
 mod two_pointers;
 //use two_pointers::Solution;
+mod ar;
 mod dp;
 mod hs;
 mod ls;
