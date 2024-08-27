@@ -346,7 +346,7 @@ impl Solution {
         dp.resize((amount + 1) as usize, 0);
         for i in 0..coins.len() {
             if coins[i] < amount {
-                dp[(coins[i] as usize)] = 1;
+                dp[coins[i] as usize] = 1;
             } else if coins[i] > amount {
                 continue;
             } else if coins[i] == amount {

@@ -1,5 +1,3 @@
-use std::fmt::format;
-
 struct Solution {}
 
 impl Solution {
@@ -903,5 +901,58 @@ impl Solution {
             i += 1;
         }
         count
+    }
+}
+
+impl Solution {
+    pub fn check(nums: Vec<i32>) -> bool {
+        if nums.len() == 1 {
+            return true;
+        }
+        let mut i = 1;
+        while i < nums.len() {
+            if nums[i - 1] > nums[i] {
+                break;
+            }
+            i += 1;
+        }
+        if i == nums.len() {
+            return true;
+        }
+        i += 1;
+        while i < nums.len() {
+            if nums[i - 1] > nums[i] {
+                return false;
+            }
+            i += 1;
+        }
+        return if nums[nums.len() - 1] <= nums[0] {
+            true
+        } else {
+            false
+        };
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Solution;
+
+    #[test]
+    pub fn test_check() {
+        let nums = vec![2, 3, 4, 5, 6, 1, 2];
+        assert!(Solution::check(nums));
+
+        let nums = vec![1, 2, 3, 4];
+        assert!(Solution::check(nums));
+
+        let nums = vec![3, 4, 5, 1, 1];
+        assert!(Solution::check(nums));
+
+        let nums = vec![3, 4, 5, 1, 0];
+        assert_eq!(Solution::check(nums), false);
+
+        let nums = vec![2, 1, 3, 4];
+        assert_eq!(Solution::check(nums), false);
     }
 }
